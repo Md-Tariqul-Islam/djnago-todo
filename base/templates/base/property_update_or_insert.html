@@ -1,0 +1,124 @@
+{% extends 'base/main.html' %} {% block content %}
+
+<div class="header-bar">
+  <a href="{% url 'tasks' %}">&#8592; Back</a>
+</div>
+
+<div class="card-body">
+  <form method="POST" action="">
+    {% csrf_token %} {{form.as_p}}
+    <input class="button" type="submit" value="Submit" />
+  </form>
+</div>
+
+{% endblock content %}
+
+<!-- <table id="property-table">
+    <thead>
+        <tr>
+            <th>Feed</th>
+            <th>Property ID</th>
+            <th>Owner ID</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ form.feed }}</td>
+            <td>{{ form.property_id }}</td>
+            <td>{{ form.owner_id }}</td>
+            <td><button class="delete-row">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<button id="add-row">Add Row</button>
+<button id="submit-form">Submit Form</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const addRowButton = document.getElementById('add-row');
+        const submitFormButton = document.getElementById('submit-form');
+        const tbody = document.querySelector('#property-table tbody');
+
+        addRowButton.addEventListener('click', function () {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+            <td>{{ form.feed }}</td>
+            <td>{{ form.property_id }}</td>
+            <td>{{ form.owner_id }}</td>
+            <td><button class="delete-row">Delete</button></td>
+        `;
+            tbody.appendChild(newRow);
+        });
+
+        tbody.addEventListener('click', function (event) {
+            if (event.target.classList.contains('delete-row')) {
+                event.target.closest('tr').remove();
+            }
+        });
+
+        submitFormButton.addEventListener('click', function () {
+            clearErrors(); // Clear existing error messages
+            const rows = tbody.querySelectorAll('tr');
+            const formData = new FormData();
+
+            rows.forEach(function (row) {
+                const feedInput = row.querySelector('[name="feed"]');
+                const propertyIdInput = row.querySelector('[name="property_id"]');
+                const ownerIdInput = row.querySelector('[name="owner_id"]');
+
+                formData.append('feed', feedInput.value.trim());
+                formData.append('property_id', propertyIdInput.value.trim());
+                formData.append('owner_id', ownerIdInput.value.trim());
+            });
+
+            // You can now submit formData via AJAX or any other method
+            console.log(formData);
+        });
+
+        function clearErrors() {
+            const errorCells = document.querySelectorAll('.error');
+            errorCells.forEach(function (errorCell) {
+                errorCell.remove();
+            });
+        }
+    });
+</script> -->
+
+<!-- <div id="content-main">
+
+    <form method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+        <div>
+            {% if form.errors %}
+            <p class="errornote">
+                {% if form.errors.items|length == 1 %}{% translate "Please correct the error below." %}{% else %}{%
+                translate "Please correct the errors below." %}{% endif %}
+            </p>
+            {% endif %}
+
+            <fieldset class="module aligned wide">
+                <div class="form-row">
+                    {{ form.feed.errors }}
+                    {{ form.feed.label_tag }} {{ form.feed }}
+                </div>
+                <div class="form-row">
+                    {{ form.property_id.errors }}
+                    {{ form.property_id.label_tag }} {{ form.property_id }}
+                </div>
+                <div class="form-row">
+                    {{ form.owner_id.errors }}
+                    {{ form.owner_id.label_tag }} {{ form.owner_id }}
+                </div>
+            </fieldset>
+
+
+            <div class="submit-row">
+                <input type="submit" value="{% translate 'Update Property' %}" class="default">
+            </div>
+
+        </div>
+    </form>
+</div> -->
+
+{% endblock %}
